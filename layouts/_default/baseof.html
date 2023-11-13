@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ .Language }}">
+    <head>
+{{ partial "head.html" . }}
+{{ block "head_script" . }}{{ end }}
+    </head>
+    <body>
+        
+        <main id="content" class="{{ .Section }} {{ .Kind }}">
+            {{- block "main" . }}{{- end }}
+        </main>
+{{ partial "footer.html" . }}
+{{- block "script" . }}{{- end }}
+        <script>
+            var locations_list = JSON.parse('{{ .Site.Data.locations | jsonify }}');
+            var current_date = new Date();
+            var current_location;
+            var next_location;
+            
+            var i = 0;
+            do {
+                let location = locations_list[i];
+                let location_date = new Date(location.date);
+                if (current_date < location_date) {
+                    next_location = location;
+                    break;
+                } else {
+                    current_location = location;
+                    i++;
+                }
+                if (i == locations_list.length) { break; }
+            } while (next_location == null);
+
+            document.querySelector('#current_location').textContent = current_location.label;
+
+            if (next_location != null) {
+                document.querySelector('#freccia').classList.remove('nascosto');
+                document.querySelector('#next_location').textContent = next_location.label;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+.home {
+    color: #ffffff;
+
+    * {
+        padding: 0 50px;
+    }
+
+    #info {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-top: 27vh;
+        
+        * {
+            font-size: inherit;
+            line-height: 1;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #000000;
+        }
+
+        h2 {
+            margin-bottom: 3rem;
+        }
+
+        p {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+    }
+}

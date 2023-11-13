@@ -1,0 +1,6 @@
+{{- $options := (dict "targetPath" "css/main.css" "outputStyle" "compressed" "enableSourceMap" (not hugo.IsProduction)) -}}
+{{- $main_css := resources.Get "scss/main.scss" | resources.ToCSS $options | fingerprint -}}
+    <link rel="stylesheet" href="{{ $main_css.RelPermalink }}" integrity="{{ $main_css.Data.Integrity }}">
+{{- $options := (dict "targetPath" "css/print.css" "outputStyle" "compressed" "enableSourceMap" (not hugo.IsProduction)) -}}
+{{- $print_css := resources.Get "scss/print.scss" | resources.ToCSS $options | fingerprint -}}
+    <link rel="stylesheet" href="{{ $print_css.RelPermalink }}" integrity="{{ $print_css.Data.Integrity }}" media="print">

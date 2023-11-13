@@ -1,0 +1,12 @@
+name = "Apo"
+license = "MIT"
+licenselink = "https://github.com/jacopodonati/hugo-theme-seventies/blob/master/LICENSE"
+description = ""
+homepage = "https://www.jacopodonati.it/"
+tags = ["light", "dark", "minimal"]
+features = []
+min_version = "0.120.0"
+
+[author]
+  name = "Jacopo Donati"
+  homepage = "https://www.jacopodonati.it/"

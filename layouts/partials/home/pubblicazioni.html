@@ -1,0 +1,22 @@
+<section class="pubblicazioni">
+    <h2>libri</h2>
+    <ul class="bookshelf">
+    {{ with .Site.GetPage "/pubblicazioni" }}
+    {{ range sort (where .Pages "Params.show" true) "Title" -}}
+        <li class="book">
+        {{- $cover := .Resources.GetMatch "cover.jpg" -}}
+        {{- if $cover -}}
+            {{- $base_width := (int .Params.width) -}}
+            {{- $base_height := (div (mul $cover.Height $base_width) $cover.Width) -}}
+            {{- $x1 := $cover.Resize (printf "x%s q80 webp" (string (mul $base_width 2))) -}}
+            {{- $x2 := $cover.Resize (printf "x%s q80 webp" (string (mul $base_width 3))) -}}
+            {{- $x3 := $cover.Resize (printf "x%s q80 webp" (string (mul $base_width 4))) -}}
+            <a href="{{ .RelPermalink }}" target="_blank">
+                    <img src="{{ $cover.RelPermalink }}" srcset="{{$x1.RelPermalink}} 1x, {{$x2.RelPermalink}} 2x, {{$x3.RelPermalink}} 3x" alt="{{ .Title }}" class="book-cover">
+            </a>    
+        {{- end }}
+        </li>
+    {{- end }}
+    {{- end -}}
+    </ul>
+</section>
